@@ -1,0 +1,21 @@
+---
+seed: -1
+
+backbone: "vit_dino"
+count_head_type: simple 
+
+img_channels: 3
+image_transforms: reflect_rotate_increase_density #None, reflect_rotate, colour_jitter, increase_density
+increase_density_rotate: True #rotate each tile independently
+increase_density_ratio: 50 #how frequently to increase_density as a percentage
+
+tensorboard_visualise: False
+
+train_batch_size: 2
+eval_batch_size: 2
+
+learning_rate: 6e-4
+max_epochs: 300
+
+
+
