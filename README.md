@@ -1,5 +1,5 @@
 # Learning To Count Anything: Reference-less Class-agnostic Counting with Weak Supervision
-**[Project Page](https://countinganyting.active.vision/) |
+**[Project Page](https://countinganything.active.vision/) |
 [Latest arXiv](https://arxiv.org/abs/2205.10203)**
 
 [Michael Hobley](https://scholar.google.co.uk/citations?user=2EftbyIAAAAJ&hl=en), 
