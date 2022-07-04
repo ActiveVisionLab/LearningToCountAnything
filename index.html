@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Micahel Hobley, Victor Adrian Prisacariu">
+  <meta name="generator" content="Jekyll v4.1.1">
+
+  <title>Counting Anything</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+  </nav>
+
+  <main role="main" class="container">
+
+    <div class="title">
+      <h1>Learning to Count Anything: Reference-less Class-agnostic Counting with Weak Supervision
+      </h1>
+    </div>
+
+    <div class="col text-center">
+      <p class="authors">
+        <a href="https://scholar.google.co.uk/citations?user=2EftbyIAAAAJ&hl=en">Michael Hobley</a>,
+        <a href="http://www.robots.ox.ac.uk/~victor/">Victor Adrian Prisacariu</a><br>
+        University of Oxford
+      </p>
+    </div>
+
+    <div class="col text-center">
+      <a class="btn btn-secondary" href="https://arxiv.org/abs/2205.10203" role="button">Arxiv</a>
+
+      <a class="btn btn-secondary" href="https://github.com/ActiveVisionLab/LearningToCountAnything"
+        role="button">Code</a>
+    </div>
+
+    <br>
+    <div style="text-align:center;">
+      <img src="assets/LearningToCountAnything.png" style="width:50%">
+    </div>
+    <br>
+
+    <h2>Abstract</h2>
+    <p>
+      Object counting is a seemingly simple task with diverse real-world applications. Most counting methods focus on
+      counting instances of specific, known classes. While there are class-agnostic counting methods that can generalise
+      to unseen classes, these methods require reference images to define the type of object to be counted, as well as
+      instance annotations during training. We identify that counting is, at its core, a repetition-recognition task and
+      show that a general feature space, with global context, is sufficient to enumerate instances in an image without a
+      prior on the object type present. Specifically, we demonstrate that self-supervised vision transformer features
+      combined with a lightweight count regression head achieve competitive results when compared to other
+      class-agnostic counting tasks without the need for point-level supervision or reference images. Our method thus
+      facilitates counting on a constantly changing set composition. To the best of our knowledge, we are both the first
+      reference-less class-agnostic counting method as well as the first weakly-supervised class-agnostic counting
+      method.
+    </p>
+
+    <h2>Visualisation of the Latent Counting Features</h2>
+    <p>
+      We overlay the two most significant
+      feature channels (shown in red and green) of the penultimate layer of our counting head on images from FSC-147.
+      The ground truth and predicted counts are in the top left and the top right of each image respectively
+    </p>
+
+    <div style="text-align:center;">
+      <img src="assets/feature_visualisation.png" style="width:100%">
+    </div>
+
+
+    <h2>Acknowledgement</h2>
+    <p>
+      The authors would like to thank
+      <a href="https://henryhj.github.io/">Henry Howard-Jenkins
+      </a> and <a href="http://costain.im">Theo Costain
+      </a>
+      for insightful discussions.
+    </p>
+
+    <h2>BibTeX</h2>
+    <pre>
+    @article{hobley2022-LTCA,
+        title={Learning to Count Anything: Reference-less Class-agnostic Counting with Weak Supervision},
+        author={Hobley, Michael and Prisacariu, Victor},
+        journal={arXiv preprint arXiv:2205.10203},
+        year={2022}
+  </pre>
+
+
+
+
+
+  </main>
+
+</html>
