@@ -16,7 +16,7 @@ We provide a `environment.yml` file to set up a `conda` environment:
 
 ```sh
 git clone https://github.com/ActiveVisionLab/LearningToCountAnything.git
-cd CountAnything
+cd LearningToCountAnything
 conda env create -f environment.yml
 ```
 
