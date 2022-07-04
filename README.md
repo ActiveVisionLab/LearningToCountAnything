@@ -1,14 +1,14 @@
-# Learning To Count Anything
+# Learning To Count Anything: Reference-less Class-agnostic Counting with Weak Supervision
+**[Project Page](https://countinganyting.active.vision/) |
+[Latest arXiv](https://arxiv.org/abs/2205.10203)**
+
+[Michael Hobley](https://scholar.google.co.uk/citations?user=2EftbyIAAAAJ&hl=en), 
+[Victor Adrian Prisacariu](http://www.robots.ox.ac.uk/~victor/). 
+
+[Active Vision Lab (AVL)](https://www.robots.ox.ac.uk/~lav/),
+University of Oxford.
+
 ![image](LearningToCountAnything.png)
-
-This is the official implementation of:
-```
-Learning to Count Anything: Reference-less Class-agnostic Counting with Weak Supervision
-Michael Hobley, Victor Prisacariu
-```
-Link to arxiv preprint: https://arxiv.org/pdf/2205.10203.pdf
-
-
 
 ## Environment
 
