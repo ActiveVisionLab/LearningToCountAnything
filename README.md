@@ -45,17 +45,26 @@ data/FSC-147
 └── Train_Test_Val_FSC_147.json
 ```
 
-### COCO
-As discussed in our work we do not think COCO should be used to evaluate counting tasks, however, as Yang et al. use it in 'Class-agnostic Few-shot Object Counting' we include it here for comparision.
-Download [Coco 2017](http://cocodataset.org/).
+### FSC-133
+As discussed in the paper, we found FSC-147 contained 448 non-unique images. Some of the duplicated images appear with different associated counts, and/or in the training set and one
+of the validation or testing sets.
+We propose FSC-133, which removes these errors, ambiguities, and repeated images from FSC-147. 
+
+As FSC-133 is a subset of FSC-147 the images and precomputed density maps are as above. The annotations, class labels and data splits have been updated.
 
 ```
-data/coco
-├── coco_id_cats_count.json
-└── val2017
-    ├── 000000000139.jpg
-    ├── 000000000285.jpg
-    ├── ...
+data/FSC-133
+├── annotation_FSC133_384.json
+├── ImageClasses_FSC133.txt
+├── gt_density_map_adaptive_384_VarV2
+│   ├── 2.npy
+│   ├── 3.npy
+│   ├── ...
+├── images_384_VarV2
+│   ├── 2.jpg
+│   ├── 3.jpg
+│   ├── ...
+└── Train_Test_Val_FSC_133.json
 ```
 
 
@@ -79,7 +88,7 @@ python main.py --config example --test
 
 ## Citation
 
-If you find the code useful, please cite:
+If you find the code or FSC-133 useful, please cite:
 ```
 
 @article{hobley2022-LTCA,
