@@ -79,7 +79,7 @@ data/FSC-133
 │   ├── ...
 └── Train_Test_Val_FSC_133.json
 ```
-## Trained Model download 
+## Trained Model Download 
 We provide [example weights](https://drive.google.com/drive/folders/1WdMk98Ujw-QWbYwRNLzQ0jxiqi4Hpt8-?usp=sharing)
  for our models trained on FSC-133.
 
