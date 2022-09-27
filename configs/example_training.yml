@@ -1,0 +1,30 @@
+---
+seed: -1
+resume_path: ""
+dataset: FSC-133
+
+backbone: "vit_dino"
+backbone_unfreeze_layers: 7
+
+counting_head: linear
+counting_loss: MAPE
+
+tensorboard_visualise: False
+
+image_transforms: reflect_rotate_increase_density 
+
+increase_density_ratio: 50 
+
+scheduler: StepLR
+scheduler_steps: 100
+scheduler_gamma: 0.5
+
+train_batch_size: 2
+eval_batch_size: 2
+
+learning_rate: 3e-5
+
+max_epochs: 300
+
+
+

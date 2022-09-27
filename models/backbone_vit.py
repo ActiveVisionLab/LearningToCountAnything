@@ -17,6 +17,7 @@ class ViTExtractor(nn.Module):
             stride: [int] any stride that is divisible by image size
         """
 
+        # vit_small_patch8_224_dino-attn_
         super(ViTExtractor, self).__init__()
         self.base_model = config["base_model"]
         self.facet = config["facet"]
@@ -43,9 +44,10 @@ class ViTExtractor(nn.Module):
         self.num_features = base_model.embed_dim
         self.patch_embed = base_model.patch_embed
         self.cls_token = base_model.cls_token
+        self.dist_token = base_model.dist_token
         self.pos_drop = base_model.pos_drop
         self.pos_embed = base_model.pos_embed
-        self.norm = base_model.norm
+        # self.norm = base_model.norm  # this probably does nothing
 
         # cut block module
         self.blocks = ViTExtractor.fix_blocks(base_model.blocks, facet, layer)
@@ -155,7 +157,12 @@ class ViTExtractor(nn.Module):
         cls_token = self.cls_token.expand(
             x.shape[0], -1, -1
         )  # stole cls_tokens impl from Phil Wang, thanks
-        x = torch.cat((cls_token, x), dim=1)
+        if self.dist_token is None:
+            x = torch.cat((cls_token, x), dim=1)
+        else:
+            x = torch.cat(
+                (cls_token, self.dist_token.expand(x.shape[0], -1, -1), x), dim=1
+            )
         x = self.pos_drop(x + self.pos_embed)
         x = self.blocks(x)
 
@@ -186,7 +193,7 @@ class ViTExtractor(nn.Module):
         # compute bins of all sizes for all spatial locations.
         for k in range(0, hierarchy):
             # avg pooling with kernel 3**kx3**k
-            win_size = 3**k
+            win_size = 3 ** k
             avg_pool = torch.nn.AvgPool2d(
                 win_size, stride=1, padding=win_size // 2, count_include_pad=False
             )
@@ -200,7 +207,7 @@ class ViTExtractor(nn.Module):
                 part_idx = 0
                 # fill all bins for a spatial location (y, x)
                 for k in range(0, hierarchy):
-                    kernel_size = 3**k
+                    kernel_size = 3 ** k
                     for i in range(y - kernel_size, y + kernel_size + 1, kernel_size):
                         for j in range(
                             x - kernel_size, x + kernel_size + 1, kernel_size

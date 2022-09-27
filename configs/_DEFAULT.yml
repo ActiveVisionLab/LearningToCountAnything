@@ -1,33 +1,45 @@
 ---
-seed: 1 # set to -1 for random
-dataset: FSC-147 # FSC-147, coco, coco5 for coco excluding <4, test_ims runs on only /data/test_ims
+seed: 1
+dataset: FSC-147
 data_path: "data/"
 test_split: val # val or test (which split to use) only use test at publication time
 log_dir: logs/
-output_dir: output/ # output directory when using save_ims
+output_dir: output/
+resume_path: "" # path to the checkpoint
+resume_path_localisation: ""
+resume_counting_head_path: ""
 
+total_loss: "counting_loss" # counting_loss, localisation_loss
 
-resume_path: "" # when training specify path to the checkpoint, if running with --test a config/log, the version, the specific checkpoint 
-only_resume_counting_head: False
-counting_head_path: ""
-save_counting_head_seperately: False
+backbone: None #vit_dino, resnet, convnext
+backbone_unfreeze_layers: 0 #number of layers or blocks to unfreeze, -1 for all
 
-backbone: vit_dino #vit_dino, resnet, convnext
-count_head_type: simple # simple, complex
-loss: MAE #MAE, MSE
+use_counting_head: True
+counting_loss: MAE
+counting_head: regress_c3_simple # linear
+
+use_localisation_head: False
+localisation_head: conv
+localisation_loss: MSE
 
 tensorboard_visualise: False
+pca_visualise: False
+tensorboard_visualise_localisation: False
+save_visualise_localisation: False
 
 img_channels: 3
 img_size: [224, 224]
-img_mode: scale #scale makes the image to the img_size, scale_and_crop scales it so the min dimension is the size and then crops, pad0, padrep
-scale_and_crop_random: True # used when using img_mode:scale_and_crop random crop rather than center crop
+img_mode: scale #scale to img_size
 
-image_transforms: None #None, reflect_rotate, colour_jitter, rgb_scramble, increase_density
-increase_density_amount: 4 #4 or 16, how many tiles should be used
+image_transforms: None #None, reflect_rotate, colour_jitter rgb_scramble, increase_density
+increase_density_ratio: 50 #how frequently to increase_density as a percentage
+increase_density_amount: 4 #how frequently to increase_density as a percentage
 increase_density_rotate: True #should the 4 tiles be rotated independently
+split_up_img: 1 #should you split the image up in to tiles to run spereately, 1 if no, 2 is 2xw grid etc
 
-# used to only train or test on certain subsets of the images (with certain density, certain average bounding box, certain aspect ratios)
+drop_last: True 
+
+# remove certain subsets of the images (with certain density, certain average bounding box, certain aspect ratios)
 exclude_imgs_with_counts_over_500: False
 exclude_imgs_with_counts_over_1000: False
 bboxes_sizes_to_look_at: 'all' #options 'all', 'small', 'medium', 'big', take images if MEAN bounding box area within definitions below (%of total image area)
@@ -36,23 +48,32 @@ bbox_big_area: 0.07
 bboxes_aspect_ratio_to_look_at: 'all' #options 'all', 'square' if set to square then only use an image if ALL the bounding boxes are of aspect ratio defined below 
 bbox_aspect_ratio_max: 3
 
-# used when using 4 fold coco
-coco_fold: 0
+scheduler: None # LinearWarmupCosineAnneal, ReduceLROnPlateau, StepLR
 
-scheduler: None #LinearWarmupCosineAnneal
+train_batch_size: 32
+eval_batch_size: 32
 
-train_batch_size: 2
-eval_batch_size: 2
-drop_last: True 
-
-learning_rate: 6e-4
+num_workers: 4
+learning_rate: 3e-4
 weight_decay: 0
-warmup_epochs: -1 #used with LinearWarmupCosineAnneal
+
+loss_clip: -1
+
+# LinearWarmupCosineAnneal
+warmup_epochs: -1
+
+# ReduceLROnPlateau
+plateau_patience: 10
+plateau_factor: 0.1
+
+# StepLR
+scheduler_steps: 100
+scheduler_gamma: 0.5
+
 overfit_batches: 0.0 # Overfit a fraction of training data (float) or a set number of batches (int)
-accumulate_grad_batches: 1
 
 val_every: 1
-max_epochs: 300
+max_epochs: 10000
 max_steps: -1
 
 

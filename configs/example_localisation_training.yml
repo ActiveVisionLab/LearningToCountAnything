@@ -1,0 +1,32 @@
+---
+seed: -1
+resume_path: logs/examples/counting.ckpt
+dataset: FSC-133
+
+backbone: "vit_dino"
+backbone_unfreeze_layers: 0
+
+use_counting_head: False
+
+total_loss: localisation_loss
+use_localisation_head: True
+localisation_head: conv
+localisation_loss: MSE
+tensorboard_visualise_localisation: True
+
+image_transforms: reflect_rotate 
+
+scheduler: StepLR
+scheduler_steps: 50
+scheduler_gamma: 0.5
+
+train_batch_size: 16
+eval_batch_size: 16
+
+learning_rate: 6e-5
+
+max_epochs: 100
+
+
+
+
