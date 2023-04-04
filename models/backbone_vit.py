@@ -44,7 +44,7 @@ class ViTExtractor(nn.Module):
         self.num_features = base_model.embed_dim
         self.patch_embed = base_model.patch_embed
         self.cls_token = base_model.cls_token
-        self.dist_token = base_model.dist_token
+        # self.dist_token = base_model.dist_token
         self.pos_drop = base_model.pos_drop
         self.pos_embed = base_model.pos_embed
         # self.norm = base_model.norm  # this probably does nothing
@@ -157,12 +157,12 @@ class ViTExtractor(nn.Module):
         cls_token = self.cls_token.expand(
             x.shape[0], -1, -1
         )  # stole cls_tokens impl from Phil Wang, thanks
-        if self.dist_token is None:
-            x = torch.cat((cls_token, x), dim=1)
-        else:
-            x = torch.cat(
-                (cls_token, self.dist_token.expand(x.shape[0], -1, -1), x), dim=1
-            )
+        # if self.dist_token is None:
+        x = torch.cat((cls_token, x), dim=1)
+        # else:
+        #    x = torch.cat(
+        #        (cls_token, self.dist_token.expand(x.shape[0], -1, -1), x), dim=1
+        #    )
         x = self.pos_drop(x + self.pos_embed)
         x = self.blocks(x)
 
