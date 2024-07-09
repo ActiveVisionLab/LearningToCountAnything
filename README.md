@@ -130,11 +130,10 @@ python main.py --config example_localisation_vis --val
 
 If you find the code or FSC-133 useful, please cite:
 ```
-
 @article{hobley2022-LTCA,
-  title={Learning to Count Anything: Reference-less Class-agnostic Counting with Weak Supervision},
-  author={Hobley, Michael and Prisacariu, Victor},
-  journal={arXiv preprint arXiv:2205.10203},
-  year={2022}
-}
+        title={Learning to Count Anything: Reference-less Class-agnostic Counting with Weak Supervision},
+        author={Hobley, Michael and Prisacariu, Victor},
+        journal = {Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+        year={2023}
+      }
 ```
